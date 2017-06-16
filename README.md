@@ -1,7 +1,7 @@
 # MemN2N_Tensorflow
 This is a repository that has my work on Memory Networks using tensorflow.
 
-NOTE:- STARTING WITH AN EMPTY REPOSITORY, WILL BE FILLING IT WITH DIFFERENT MODELS.
+Adding the baseline model for babi tasks.
 
 The meomory networks are based on https://arxiv.org/abs/1410.3916
 
