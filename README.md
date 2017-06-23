@@ -10,3 +10,21 @@ Check the individal files for more details.
 #### Babi baseline model
 
 Adding the baseline model for babi tasks.
+
+## First Model
+
+This is the first model and is used to run the bAbI tasks.
+
+To run the first model use the files memn2n_simple.py, data_utils.py and model.py
+
+##### model.py
+
+This file has the End-to-End Memory Network. I will add further details of the model soon.
+
+##### data_utils.py
+
+This file has the necessary functions to load any bAbI task.
+
+##### memn2n_simple.py
+
+To run the model, execute in terminal python3 memn2n_simple.py . For further help run the command python3 memn2n_simple.py --help .
