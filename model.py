@@ -73,7 +73,6 @@ class MemN2N(object):
 		self.A = tf.Variable(tf.truncated_normal(shape = [self.n_words, self.e_dim], stddev = self.init_stddev), name = 'A')
 		self.Temp_A = tf.Variable(tf.truncated_normal(shape = [self.mem_size, self.e_dim], stddev = self.init_stddev), name = 'Temp_A')
 		# making m_i = sum(A_ij, x_ij) + Temp_A_i
-		# lookup from memory and time, both these things improve with training
 		a_con = tf.nn.embedding_lookup(self.A, self.memory, name = 'a_con') # (batch_size, mem_size, e_dim)
 		a_temp = tf.nn.embedding_lookup(self.Temp_A, self.time, name = 'a_temp') # (batch_size, mem_size, e_dim)
 		a_pre_hid = tf.add(a_con, a_temp, name = 'a_pre_hid') # (batch_size, mem_size, e_dim)
@@ -82,7 +81,6 @@ class MemN2N(object):
 		self.C = tf.Variable(tf.truncated_normal(shape = [self.n_words, self.e_dim], stddev = self.init_stddev), name = 'C')
 		self.Temp_C = tf.Variable(tf.truncated_normal(shape = [self.mem_size, self.e_dim], stddev = self.init_stddev), name = 'Temp_C')
 		# making c_i = sum(C_ij, x_ij) + Temp_C
-		# lookup from memory and time, both these things improve with training
 		c_con = tf.nn.embedding_lookup(self.C, self.memory, name = 'c_con') # (batch_size, mem_size, e_dim)
 		c_temp = tf.nn.embedding_lookup(self.Temp_C, self.time, name = 'c_temp') # (batch_size, mem_size, e_dim)
 		c_pre_hid = tf.add(c_con, c_temp, name = 'c_pre_hid') # (batch_size, mem_size, e_dim)
@@ -116,10 +114,6 @@ class MemN2N(object):
 			self.hidden.append(mem_out)
 
 		# Now making rest of the model
-
-		# UPDATE: 22/07/16/0024
-		# adding a line of code that adds the input question to the output from the memory, as sugegsted by the paper
-		# self.hidden += self.input_t
 
 		# Adding a neural network here
 		self.W1 = tf.Variable(tf.truncated_normal(shape = [self.e_dim, self.n_hidden], stddev = self.init_stddev), name = 'W1') # the final weight
